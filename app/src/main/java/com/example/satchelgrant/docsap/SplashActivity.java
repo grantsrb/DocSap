@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if(v == mSubmitSearch) {
             String searchText = mSearch.getText().toString();
-            searchText = searchText.equals("") ? searchText : "No Search Terms";
+            searchText = searchText.equals("") ? "No Search Terms" : searchText;
             Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
             newIntent.putExtra("search", searchText);
             startActivity(newIntent);

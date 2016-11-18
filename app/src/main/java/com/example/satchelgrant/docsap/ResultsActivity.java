@@ -39,7 +39,9 @@ public class ResultsActivity extends AppCompatActivity {
         mDoctorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(ResultsActivity.this, "Functionality to be added soon!", Toast.LENGTH_LONG).show();
+                String text = ((TextView) view).getText().toString();
+                text = text + " does not actually exist!";
+                Toast.makeText(ResultsActivity.this, text, Toast.LENGTH_LONG).show();
             }
         });
 
