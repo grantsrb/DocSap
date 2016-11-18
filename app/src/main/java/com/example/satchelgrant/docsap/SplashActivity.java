@@ -1,6 +1,7 @@
 package com.example.satchelgrant.docsap;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,15 +16,21 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Bind(R.id.usernameDisplay) TextView mUserDisplay;
     @Bind(R.id.submitSearch) Button mSubmitSearch;
     @Bind(R.id.search) EditText mSearch;
+    @Bind(R.id.welcome) TextView mWelcome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
 
+        Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
+        mWelcome.setTypeface(droidSans);
+        mUserDisplay.setTypeface(droidSans);
+
         Intent intent = getIntent();
         mUserDisplay.setText(intent.getStringExtra("username"));
         mSubmitSearch.setOnClickListener(this);
+
     }
 
     @Override

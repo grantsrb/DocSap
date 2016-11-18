@@ -1,6 +1,7 @@
 package com.example.satchelgrant.docsap;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -23,6 +24,9 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         ButterKnife.bind(this);
+
+        Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
+        mSubmittedSearch.setTypeface(droidSans);
 
         Intent intent = getIntent();
         String search = intent.getStringExtra("search");
