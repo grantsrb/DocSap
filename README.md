@@ -1,12 +1,10 @@
 # DocSapp
-### _Epicodus:  Android Week 1_
 
 #### By _[**Satchel Grant**](https://github.com/grantsrb)_
 
 ## Description
 
-
-This is a minimal app that will link users to local doctors quickly and efficiently. There is currently limited functionality.
+This app links users to portland doctors by doctor specialty, doctor name, and/or user ailment. This is a prototype and is still in progress.
 
 ## Installation
 
