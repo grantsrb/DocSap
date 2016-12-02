@@ -11,23 +11,19 @@ public class Doctor {
     private String mLastName;
     private String mAddress;
     private ArrayList<String> mSpecialties;
-    private String mSchool;
     private String mTitle;
     private String mImageUrl;
     private String mBio;
-    private String mYelpRating;
     private String mBetterDoctorRating;
 
-    public Doctor (String firstName,String lastName,String address,String school,String title,String imageUrl,String bio,String yelpRating,String betterDocRating,ArrayList<String> specialties) {
+    public Doctor (String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,ArrayList<String> specialties) {
         mFirstName = firstName;
         mLastName = lastName;
         mAddress = address;
         mSpecialties = specialties;
-        mSchool = school;
         mTitle = title;
         mImageUrl = imageUrl;
         mBio = bio;
-        mYelpRating = yelpRating;
         mBetterDoctorRating = betterDocRating;
     }
 
@@ -51,9 +47,6 @@ public class Doctor {
         return mAddress;
     }
 
-    public String getSchool() {
-        return mSchool;
-    }
 
     public String getTitle() {
         return mTitle;
@@ -67,9 +60,6 @@ public class Doctor {
         return mBio;
     }
 
-    public String getYelpRating() {
-        return mYelpRating;
-    }
 
     public String getBetterDoctorRating() {
         return mBetterDoctorRating;
