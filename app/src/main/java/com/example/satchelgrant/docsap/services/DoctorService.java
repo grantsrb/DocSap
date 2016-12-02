@@ -109,7 +109,7 @@ public class DoctorService {
                             break;
                         }
                     }
-                    Doctor newDoctor = new Doctor(firstName,lastName,address,title,imageUrl,bio,betterDocRating,specialties);
+                    Doctor newDoctor = new Doctor(firstName,lastName,address,title,imageUrl,bio,betterDocRating,phoneNum,specialties);
                     doctors.add(newDoctor);
                 }
             }

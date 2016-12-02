@@ -18,10 +18,11 @@ public class Doctor {
     private String mImageUrl;
     private String mBio;
     private String mBetterDoctorRating;
+    private String mPhoneNumber;
 
     public Doctor() {}
 
-    public Doctor (String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,ArrayList<String> specialties) {
+    public Doctor (String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,String phoneNum,ArrayList<String> specialties) {
         mFirstName = firstName;
         mLastName = lastName;
         mAddress = address;
@@ -30,6 +31,7 @@ public class Doctor {
         mImageUrl = imageUrl;
         mBio = bio;
         mBetterDoctorRating = betterDocRating;
+        mPhoneNumber = phoneNum;
     }
 
     public String getFirstName() {
@@ -52,6 +54,9 @@ public class Doctor {
         return mAddress;
     }
 
+    public String getPhoneNumber() {
+        return mPhoneNumber;
+    }
 
     public String getTitle() {
         return mTitle;
