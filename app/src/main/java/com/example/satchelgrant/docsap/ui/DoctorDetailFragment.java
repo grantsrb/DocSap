@@ -1,5 +1,7 @@
 package com.example.satchelgrant.docsap.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -19,7 +21,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
-public class DoctorDetailFragment extends Fragment {
+public class DoctorDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.doctorImageView) ImageView mDoctorImageView;
     @Bind(R.id.doctorNameTextView) TextView mDoctorNameView;
     @Bind(R.id.ratingTextView) TextView mRatingView;
@@ -65,6 +67,20 @@ public class DoctorDetailFragment extends Fragment {
         mBioView.setText(mDoctor.getBio());
         mPhoneView.setText(mDoctor.getPhoneNumber());
         mAddressView.setText(mDoctor.getAddress());
+
+        mPhoneView.setOnClickListener(this);
+        mAddressView.setOnClickListener(this);
         return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==mPhoneView) {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mDoctor.getPhoneNumber()));
+            startActivity(intent);
+        } else if (v == mAddressView) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mDoctor.getAddress()));
+            startActivity(intent);
+        }
     }
 }
