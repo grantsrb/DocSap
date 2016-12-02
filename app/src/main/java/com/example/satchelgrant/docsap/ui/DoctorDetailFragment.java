@@ -29,6 +29,9 @@ public class DoctorDetailFragment extends Fragment {
     @Bind(R.id.addressTextView) TextView mAddressView;
     @Bind(R.id.saveDoctorButton) Button mSaveButton;
 
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private Doctor mDoctor;
 
     public static DoctorDetailFragment newInstance(Doctor doctor) {
@@ -50,7 +53,11 @@ public class DoctorDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_doctor_detail, container, false);
         ButterKnife.bind(this, view);
-        Picasso.with(view.getContext()).load(mDoctor.getImageUrl()).into(mDoctorImageView);
+        Picasso.with(view.getContext())
+                .load(mDoctor.getImageUrl())
+                .resize(MAX_WIDTH, MAX_HEIGHT)
+                .centerCrop()
+                .into(mDoctorImageView);
 
         mDoctorNameView.setText(mDoctor.getFullNameWithTitle());
         mRatingView.setText(mDoctor.getBetterDoctorRating());
