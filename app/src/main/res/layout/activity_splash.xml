@@ -7,17 +7,6 @@
     tools:context="com.example.satchelgrant.docsap.SplashActivity">
 
     <TextView
-        android:text="Welcome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="53dp"
-        android:id="@+id/welcome"
-        android:textSize="40dp"
-        android:textColor="@color/primary_text"/>
-
-    <TextView
         android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,17 +17,57 @@
         android:textSize="40dp"
         android:textColor="@color/primary_text"/>
 
+    <Button
+        android:text="About"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/about"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/usernameDisplay"
+        android:layout_alignEnd="@+id/usernameDisplay" />
+
+    <Button
+        android:text="Contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/about"
+        android:id="@+id/contact"
+        android:layout_toRightOf="@+id/usernameDisplay"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="(name or zip)"
+        android:hint="Specialty"
         android:ems="10"
         android:gravity="center"
+        android:id="@+id/specialtyQuery"
+        android:layout_above="@+id/submitSearch"
+        android:layout_alignLeft="@+id/nameQuery"
+        android:layout_alignStart="@+id/nameQuery" />
+
+    <Button
+        android:text="Submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitSearch"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="61dp"
-        android:id="@+id/search" />
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:gravity="center"
+        android:id="@+id/nameQuery"
+        android:layout_above="@+id/specialtyQuery"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Search Doctors"
@@ -46,17 +75,21 @@
         android:textColor="@color/primary_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/search"
+        android:id="@+id/inputDetail"
+        android:layout_above="@+id/nameQuery"
         android:layout_centerHorizontal="true"
-        android:id="@+id/inputDetail" />
+        android:layout_marginBottom="11dp" />
 
-    <Button
-        android:text="Submit"
+    <TextView
+        android:text="Welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/submitSearch" />
+        android:id="@+id/welcome"
+        android:textSize="40dp"
+        android:textColor="@color/primary_text"
+        android:layout_alignBaseline="@+id/usernameDisplay"
+        android:layout_alignBottom="@+id/usernameDisplay"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

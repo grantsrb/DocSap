@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String userName = mUsername.getText().toString();
             String password = mPassword.getText().toString();
             Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-            if(userName.equals("")) {
+            if(!Pattern.matches(".*\\W.*", userName)) {
                 Toast.makeText(this, "Enter something in the username field! I don't care about the password yet!", Toast.LENGTH_LONG).show();
             } else {
                 intent.putExtra("username", userName);
