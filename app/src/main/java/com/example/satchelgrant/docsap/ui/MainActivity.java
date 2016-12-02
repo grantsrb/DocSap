@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             String userName = mUsername.getText().toString();
             String password = mPassword.getText().toString();
             Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-            if(Pattern.matches(".*\\W.*", userName) || userName.isEmpty()) {
+            if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", userName)) { // Uses regex to prevent non alphanumeric characters
                 Toast.makeText(this, "Enter something in the username field! I don't care about the password yet!", Toast.LENGTH_LONG).show();
             } else {
                 intent.putExtra("username", userName);

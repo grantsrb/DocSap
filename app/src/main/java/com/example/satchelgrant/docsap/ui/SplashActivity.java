@@ -8,8 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.satchelgrant.docsap.R;
+
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,6 +25,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Bind(R.id.nameQuery) EditText mNameQuery;
     @Bind(R.id.specialtyQuery) EditText mSpecialtyQuery;
     @Bind(R.id.welcome) TextView mWelcome;
+    @Bind(R.id.queryInput) EditText mQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +50,19 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         if(v == mSubmitSearch) {
             String nameQuery = mNameQuery.getText().toString();
             String specialtyQuery = mSpecialtyQuery.getText().toString();
-            Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
-            newIntent.putExtra("nameQuery", nameQuery);
-            newIntent.putExtra("specialtyQuery", specialtyQuery);
-            startActivity(newIntent);
+            String query = mQuery.getText().toString();
+
+            // Form validation (uses regex to prevent non-alphanumeric characters"
+            if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) || Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) || Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
+                Toast.makeText(SplashActivity.this, "At least one field must be filled! And only alphanumeric characters!", Toast.LENGTH_LONG).show();
+            } else {
+                Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
+                newIntent.putExtra("nameQuery", nameQuery);
+                newIntent.putExtra("specialtyQuery", specialtyQuery);
+                newIntent.putExtra("query", query);
+                startActivity(newIntent);
+            }
+
         } else if (v == mAbout) {
             Intent newIntent = new Intent(SplashActivity.this, AboutActivity.class);
             startActivity(newIntent);

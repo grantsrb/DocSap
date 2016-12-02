@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Specialty"
+        android:hint="Doctor Specialty"
         android:ems="10"
         android:gravity="center"
         android:id="@+id/specialtyQuery"
@@ -52,23 +52,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Name"
+        android:hint="Doctor Name"
         android:ems="10"
         android:gravity="center"
         android:id="@+id/nameQuery"
         android:layout_above="@+id/specialtyQuery"
         android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:text="Search Doctors"
-        android:textSize="20dp"
-        android:textColor="@color/primary_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/inputDetail"
-        android:layout_above="@+id/nameQuery"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="11dp" />
 
     <TextView
         android:text="Welcome"
@@ -91,6 +80,28 @@
         android:layout_alignTop="@+id/welcome"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp" />
+
+    <TextView
+        android:text="Search Doctors"
+        android:textSize="20dp"
+        android:textColor="@color/primary_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/inputDetail"
+        android:layout_marginBottom="53dp"
+        android:layout_above="@+id/nameQuery"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Reason for Needing Doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/queryInput"
+        android:textSize="18sp"
+        android:layout_above="@+id/nameQuery"
+        android:layout_alignRight="@+id/nameQuery"
+        android:layout_alignEnd="@+id/nameQuery"
+        android:layout_marginBottom="12dp" />
 
 
 </RelativeLayout>
