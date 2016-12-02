@@ -1,11 +1,14 @@
 package com.example.satchelgrant.docsap.models;
 
+import org.parceler.Parcel;
+
 import java.util.ArrayList;
 
 /**
  * Created by satchelgrant on 12/1/16.
  */
 
+@Parcel
 public class Doctor {
     private String mFirstName;
     private String mLastName;
@@ -15,6 +18,8 @@ public class Doctor {
     private String mImageUrl;
     private String mBio;
     private String mBetterDoctorRating;
+
+    public Doctor() {}
 
     public Doctor (String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,ArrayList<String> specialties) {
         mFirstName = firstName;

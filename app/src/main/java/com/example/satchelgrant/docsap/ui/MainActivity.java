@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if(v == mLogin) {
-            String userName = mUsername.getText().toString();
-            String password = mPassword.getText().toString();
+            String userName = mUsername.getText().toString().trim();
+            String password = mPassword.getText().toString().trim();
             Intent intent = new Intent(MainActivity.this, SplashActivity.class);
-            if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", userName)) { // Uses regex to prevent non alphanumeric characters
+            if(Pattern.matches(".*[^a-z&&[^A-Z&&[^\\s]]].*|[a-zA-Z]{0}", userName)) { // Uses regex to prevent non alphanumeric characters
                 Toast.makeText(this, "Enter something in the username field! I don't care about the password yet!", Toast.LENGTH_LONG).show();
             } else {
                 intent.putExtra("username", userName);

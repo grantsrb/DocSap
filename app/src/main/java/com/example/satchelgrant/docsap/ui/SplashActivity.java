@@ -48,13 +48,13 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
         if(v == mSubmitSearch) {
-            String nameQuery = mNameQuery.getText().toString();
-            String specialtyQuery = mSpecialtyQuery.getText().toString();
-            String query = mQuery.getText().toString();
+            String nameQuery = mNameQuery.getText().toString().trim();
+            String specialtyQuery = mSpecialtyQuery.getText().toString().trim();
+            String query = mQuery.getText().toString().trim();
 
             // Form validation (uses regex to prevent non-alphanumeric characters"
             if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
-                Toast.makeText(SplashActivity.this, "At least one field must be filled! And only alphanumeric characters!", Toast.LENGTH_LONG).show();
+                Toast.makeText(SplashActivity.this, "At least one field must be filled, no spaces, and no punctuation!", Toast.LENGTH_LONG).show();
             } else {
                 Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
                 newIntent.putExtra("name", nameQuery);
