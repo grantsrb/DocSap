@@ -10,4 +10,41 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.satchelgrant.docsap.ui.ContactActivity">
 
+    <TextView
+        android:text="Satchel Grant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/nameBanner"
+        android:textSize="30dp"
+        android:textColor="@color/primary_text"/>
+
+    <TextView
+        android:text="GitHub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gitHub"
+        android:textSize="20dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="LinkedIn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/linkedIn"
+        android:textSize="20dp"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/gitHub"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="grantsrb@gmail.com"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:textSize="20dp"
+        android:layout_below="@+id/nameBanner"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
