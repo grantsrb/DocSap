@@ -1,4 +1,4 @@
-package com.example.satchelgrant.docsap;
+package com.example.satchelgrant.docsap.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -9,8 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.satchelgrant.docsap.ui.AboutActivity;
-import com.example.satchelgrant.docsap.ui.ContactActivity;
+import com.example.satchelgrant.docsap.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,6 +36,8 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         mUserDisplay.setText(intent.getStringExtra("username"));
         mSubmitSearch.setOnClickListener(this);
+        mAbout.setOnClickListener(this);
+        mContact.setOnClickListener(this);
 
     }
 

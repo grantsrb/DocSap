@@ -1,4 +1,4 @@
-package com.example.satchelgrant.docsap;
+package com.example.satchelgrant.docsap.ui;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -10,6 +10,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.satchelgrant.docsap.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
