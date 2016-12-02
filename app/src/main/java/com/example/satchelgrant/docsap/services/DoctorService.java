@@ -73,9 +73,10 @@ public class DoctorService {
                         JSONObject addressJson = practices.getJSONObject(j).getJSONObject("visit_address");
                         if(addressJson.getString("city").equals("Portland")) {
                             address = addressJson.getString("street");
-                            String street2 = addressJson.getString("street2");
-                            if(!street2.isEmpty())
+                            if(!addressJson.isNull("street2")) {
+                                String street2 = addressJson.getString("street2");
                                 address = address + ", " + street2;
+                            }
                             address = address + "\n" + addressJson.getString("city") + ", " +
                                     addressJson.getString("state") + " " + addressJson.getString("zip");
                             JSONArray phones = practices.getJSONObject(j).getJSONArray("phones");

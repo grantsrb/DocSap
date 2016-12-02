@@ -8,9 +8,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.example.satchelgrant.docsap.R;
+import com.example.satchelgrant.docsap.models.Doctor;
 import com.example.satchelgrant.docsap.services.DoctorService;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import okhttp3.Call;
@@ -22,6 +24,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private String mName;
     private String mQuery;
     private String mSpecialty;
+    private ArrayList<Doctor> mDoctors;
 
 
     @Override
@@ -51,7 +54,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Log.d(Tag, response.body().string());
+                mDoctors = service.processResponse(response);
+                Log.d(Tag, mDoctors.get(0).getAddress());
             }
         });
 
