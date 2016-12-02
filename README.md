@@ -1,65 +1,33 @@
 # DocSapp
-### _Epicodus:  Android Week 1_
 
 #### By _[**Satchel Grant**](https://github.com/grantsrb)_
 
 ## Description
 
-This is an app that will link users to local doctors quickly and efficiently.
+This app links users to portland doctors by doctor specialty, doctor name, and/or user ailment. This is a prototype and is still in progress.
 
 ## Installation
 
 * Clone this repository to your desktop
-* Open Android studio and open this project in the studio
-  *  You may need to adjust the gradle project file:
-    *
-* Click the 
+* Open Android Studio and open this project in the studio by double clicking the project folder (DocSap)
+* Click the green play button in the top bar and choose whatever emulator you prefer
+* Experience the app in the emulator
 
-## Running / Development
+## Known Bugs
+None
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+## Support and contact details
 
-### Code Generators
+Satchel Grant: _grantsrb@gmail.com_
 
-Make use of the many generators for code, try `ember help generate` for more details
+## Technologies Used
 
-### Running Tests
+_Java,
+Android,
+Gradle_
 
-* `ember test`
-* `ember test --server`
+### License
 
-### Building
+This webpage is licensed under the GPL license.
 
-* `ember build` (development)
-* `ember build --environment production` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
-
-  ## Support and contact details
-
-  Satchel Grant: _grantsrb@gmail.com_
-
-  ## Technologies Used
-
-  _Javascript,
-  Angular,
-  Gulp,
-  Bower,
-  Sass_
-
-  ### License
-
-  This webpage is licensed under the GPL license.
-
-  Copyright &copy; 2016 **_Satchel Grant_**
+Copyright &copy; 2016 **_Satchel Grant_**
