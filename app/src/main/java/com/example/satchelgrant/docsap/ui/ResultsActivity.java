@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.example.satchelgrant.docsap.DoctorRecListAdapter;
 import com.example.satchelgrant.docsap.R;
 import com.example.satchelgrant.docsap.models.Doctor;
 import com.example.satchelgrant.docsap.services.DoctorService;
@@ -14,6 +16,7 @@ import com.example.satchelgrant.docsap.services.DoctorService;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,6 +28,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private String mQuery;
     private String mSpecialty;
     private ArrayList<Doctor> mDoctors;
+    private DoctorRecListAdapter mAdapter;
+
+    @Bind(R.id.doctorRecycler) RecyclerView mRecyclerView;
 
 
     @Override
@@ -55,7 +61,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 mDoctors = service.processResponse(response);
-                Log.d(Tag, mDoctors.get(0).getAddress());
+
+                ResultsActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        mAdapter = new DoctorRecListAdapter(getApplicationContext(), mDoctors);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager=
+                                new LinearLayoutManager(ResultsActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+                    }
+                });
             }
         });
 

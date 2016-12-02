@@ -6,13 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.satchelgrant.docsap.ui.ResultsActivity">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_height="400dp"
-        android:id="@+id/doctorList" />
+
 
     <TextView
         android:text="Search Results"
@@ -24,4 +18,11 @@
         android:id="@+id/submittedSearch"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/doctorRecycler"
+        android:layout_below="@+id/submittedSearch"
+        android:layout_marginTop="50dp" />
 </RelativeLayout>
