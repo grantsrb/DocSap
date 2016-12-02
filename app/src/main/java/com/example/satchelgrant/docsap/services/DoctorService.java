@@ -32,7 +32,7 @@ public class DoctorService {
         if(!Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialty)) { //Validation
             urlBuild.addQueryParameter("specialty_uid", specialty);
         }
-        urlBuild.addQueryParameter("user_location", "45.5231,122.6765");
+        urlBuild.addQueryParameter("user_location", "45.5231,-122.6765");
         urlBuild.addQueryParameter("skip", "0");
         urlBuild.addQueryParameter("limit", "10");
         urlBuild.addQueryParameter("user_key", Constants.DOCTOR_KEY);

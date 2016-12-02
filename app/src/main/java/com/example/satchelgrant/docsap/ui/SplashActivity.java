@@ -53,12 +53,12 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             String query = mQuery.getText().toString();
 
             // Form validation (uses regex to prevent non-alphanumeric characters"
-            if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) || Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) || Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
+            if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
                 Toast.makeText(SplashActivity.this, "At least one field must be filled! And only alphanumeric characters!", Toast.LENGTH_LONG).show();
             } else {
                 Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
-                newIntent.putExtra("nameQuery", nameQuery);
-                newIntent.putExtra("specialtyQuery", specialtyQuery);
+                newIntent.putExtra("name", nameQuery);
+                newIntent.putExtra("specialty", specialtyQuery);
                 newIntent.putExtra("query", query);
                 startActivity(newIntent);
             }

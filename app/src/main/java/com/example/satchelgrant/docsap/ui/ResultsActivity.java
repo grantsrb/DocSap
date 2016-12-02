@@ -4,22 +4,25 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.satchelgrant.docsap.R;
+import com.example.satchelgrant.docsap.services.DoctorService;
 
-import butterknife.Bind;
+import java.io.IOException;
+
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
-public class ResultsActivity extends AppCompatActivity {
-    private final String[] doctors = {"Dr. Osborn", "Dr. Dre", "Dr. Love", "Dr. DooLittle", "Dr. Octopus", "Dr. Metropolis"};
-    @Bind(R.id.doctorList) ListView mDoctorList;
-    @Bind(R.id.submittedSearch) TextView mSubmittedSearch;
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
+    public static final String Tag = ResultsActivity.class.getSimpleName();
+    private String mName;
+    private String mQuery;
+    private String mSpecialty;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,24 +31,34 @@ public class ResultsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
-        mSubmittedSearch.setTypeface(droidSans);
 
         Intent intent = getIntent();
-        String search = intent.getStringExtra("search");
+        mQuery = intent.getStringExtra("query");
+        mName = intent.getStringExtra("name");
+        mSpecialty = intent.getStringExtra("specialty");
 
-        mSubmittedSearch.setText("Results for " + search);
+        findDoctors(mQuery, mName, mSpecialty);
 
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, doctors);
-        mDoctorList.setAdapter(adapter);
+    }
 
-        mDoctorList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    public void findDoctors(String query, String name, String specialty) {
+        final DoctorService service = new DoctorService();
+        service.getDoctors(query, name, specialty, new Callback() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String text = ((TextView) view).getText().toString();
-                text = text + " does not actually exist!";
-                Toast.makeText(ResultsActivity.this, text, Toast.LENGTH_LONG).show();
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.d(Tag, response.body().string());
             }
         });
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }
