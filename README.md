@@ -10,7 +10,18 @@ This app links users to portland doctors by doctor specialty, doctor name, and/o
 
 * Clone this repository to your desktop
 * Open Android Studio and open this project in the studio by double clicking the project folder (DocSap)
-* Click the green play button in the top bar and choose whatever emulator you prefer
+* Click the green play button in the window topbar and choose whatever emulator you prefer
+  - If you are using Android Studio 2.1 and the app does not run:
+    * Disable instant run
+      - Click "Android Studio" in the computer topbar
+      - Select "Preferences"
+      - In the left side navigation of the window that pops up, select "Build, Execution, Deployment"
+      - Select "Instant Run" from the dropdown
+      - Uncheck the "Enable Instant Run ..." checkbox
+    * Clean project
+      - Select "Build" from the computer topbar
+      - Select "Clean Project" from the dropdown
+    * Run the app by clicking the green playbutton in the window topbar
 * Experience the app in the emulator
 
 ## Known Bugs
