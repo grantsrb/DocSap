@@ -66,8 +66,10 @@ public class DoctorService {
                 JSONArray doctorsResults = results.getJSONArray("data");
                 String address = "No Portland Address Provided";
                 String phoneNum = "No Phone Provided";
+                String uid;
                 for(int i = 0; i < doctorsResults.length(); i++) {
                     JSONObject doctor = doctorsResults.getJSONObject(i);
+                    uid = doctor.getString("uid");
                     JSONArray practices = doctor.getJSONArray("practices");
                     for(int j = 0; j < practices.length(); j++) {
                         JSONObject addressJson = practices.getJSONObject(j).getJSONObject("visit_address");
@@ -109,7 +111,7 @@ public class DoctorService {
                             break;
                         }
                     }
-                    Doctor newDoctor = new Doctor(firstName,lastName,address,title,imageUrl,bio,betterDocRating,phoneNum,specialties);
+                    Doctor newDoctor = new Doctor(uid, firstName,lastName,address,title,imageUrl,bio,betterDocRating,phoneNum,specialties);
                     doctors.add(newDoctor);
                 }
             }

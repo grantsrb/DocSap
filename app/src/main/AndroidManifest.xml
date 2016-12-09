@@ -39,7 +39,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.satchelgrant.docsap.ui.SplashActivity" />
         </activity>
-        <activity android:name=".ui.DoctorDetailActivity"></activity>
+        <activity android:name=".ui.DoctorDetailActivity" />
+        <activity android:name=".ui.NewReviewActivity" />
+        <activity android:name=".ui.CreateAccountActivity"></activity>
     </application>
 
 </manifest>

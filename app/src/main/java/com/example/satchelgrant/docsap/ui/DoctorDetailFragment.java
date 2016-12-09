@@ -1,8 +1,10 @@
 package com.example.satchelgrant.docsap.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +13,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.satchelgrant.docsap.Constants;
 import com.example.satchelgrant.docsap.R;
 import com.example.satchelgrant.docsap.models.Doctor;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -29,12 +34,17 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     @Bind(R.id.bioTextView) TextView mBioView;
     @Bind(R.id.phoneTextView) TextView mPhoneView;
     @Bind(R.id.addressTextView) TextView mAddressView;
-    @Bind(R.id.saveDoctorButton) Button mSaveButton;
+    @Bind(R.id.reviewDoctorButton) Button mReviewButton;
 
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
     private Doctor mDoctor;
+
+    private DatabaseReference mReviewsRef;
+    private DatabaseReference mDoctorsRef;
+    private SharedPreferences mSharedPrefs;
+    private SharedPreferences.Editor mEditor;
 
     public static DoctorDetailFragment newInstance(Doctor doctor) {
         DoctorDetailFragment doctorDetailFragment = new DoctorDetailFragment();
@@ -48,6 +58,11 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDoctor = Parcels.unwrap(getArguments().getParcelable("doctor"));
+
+        mReviewsRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHILD_REVIEWS);
+        mDoctorsRef = mReviewsRef.child(mDoctor.getDoctorId());
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+        mEditor = mSharedPrefs.edit();
     }
 
 
@@ -70,6 +85,7 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
 
         mPhoneView.setOnClickListener(this);
         mAddressView.setOnClickListener(this);
+        mReviewButton.setOnClickListener(this);
         return view;
     }
 
@@ -80,6 +96,12 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
             startActivity(intent);
         } else if (v == mAddressView) {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mDoctor.getAddress()));
+            startActivity(intent);
+        } else if(v==mReviewButton) {
+            String newReviewKey = mReviewsRef.push().getKey();
+            mEditor.putString("reviewPushId", newReviewKey).apply();
+            mEditor.putString("doctorId", mDoctor.getDoctorId()).apply();
+            Intent intent = new Intent(this.getContext(), NewReviewActivity.class);
             startActivity(intent);
         }
     }

@@ -10,72 +10,87 @@ import java.util.ArrayList;
 
 @Parcel
 public class Doctor {
-    private String mFirstName;
-    private String mLastName;
-    private String mAddress;
-    private ArrayList<String> mSpecialties;
-    private String mTitle;
-    private String mImageUrl;
-    private String mBio;
-    private String mBetterDoctorRating;
-    private String mPhoneNumber;
+    private String firstName;
+    private String lastName;
+    private String doctorId;
+    private String address;
+    private ArrayList<String> specialties;
+    private String title;
+    private String imageUrl;
+    private String bio;
+    private String betterDoctorRating;
+    private String phoneNumber;
+    private String pushId;
 
     public Doctor() {}
 
-    public Doctor (String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,String phoneNum,ArrayList<String> specialties) {
-        mFirstName = firstName;
-        mLastName = lastName;
-        mAddress = address;
-        mSpecialties = specialties;
-        mTitle = title;
-        mImageUrl = imageUrl;
-        mBio = bio;
-        mBetterDoctorRating = betterDocRating;
-        mPhoneNumber = phoneNum;
+    public Doctor (String uid, String firstName,String lastName,String address,String title,String imageUrl,String bio,String betterDocRating,String phoneNum,ArrayList<String> specialties) {
+        this.doctorId = uid;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.specialties = specialties;
+        this.title = title;
+        this.imageUrl = imageUrl;
+        this.bio = bio;
+        this.betterDoctorRating = betterDocRating;
+        this.phoneNumber = phoneNum;
     }
 
     public String getFirstName() {
-        return mFirstName;
+        return firstName;
     }
 
     public String getLastName() {
-        return mLastName;
+        return lastName;
     }
 
     public String getFullName() {
-        return mFirstName + " " + mLastName;
+        return firstName + " " + lastName;
     }
 
     public String getFullNameWithTitle() {
-        return mFirstName + " " + mLastName + ", " + mTitle;
+        return firstName + " " + lastName + ", " + title;
     }
 
     public String getAddress() {
-        return mAddress;
+        return address;
     }
 
     public String getPhoneNumber() {
-        return mPhoneNumber;
+        return phoneNumber;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public String getImageUrl() {
-        return mImageUrl;
+        return imageUrl;
     }
 
     public String getBio() {
-        return mBio;
+        return bio;
     }
 
 
     public String getBetterDoctorRating() {
-        return mBetterDoctorRating;
+        return betterDoctorRating;
     }
 
     public ArrayList<String> getSpecialties() {
-        return mSpecialties;
+        return specialties;
+    }
+
+    public String getDoctorId() {
+        return this.doctorId;
+    }
+
+    public String getPushId() {
+        return this.pushId;
+    }
+
+    public void setPushId(String id) {
+        this.pushId = id;
     }
 }

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "584423858549",
+    "firebase_url": "https://docsapp-544ed.firebaseio.com",
+    "project_id": "docsapp-544ed",
+    "storage_bucket": "docsapp-544ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584423858549:android:f9181e9d958065f7",
+        "android_client_info": {
+          "package_name": "com.example.satchelgrant.docsap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584423858549-lfo54tak2r7qd54cige9ro8d4c5lodv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.satchelgrant.docsap",
+            "certificate_hash": "D8BAAD553BA6C622B97B8CC1343A63D2668ACC56"
+          }
+        },
+        {
+          "client_id": "584423858549-49g0f19t128kl8sbgigv8e7cnv3n7r5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs2_P-J3ky-IVZHOfvsyqv_0spzKJPm2c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584423858549-49g0f19t128kl8sbgigv8e7cnv3n7r5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

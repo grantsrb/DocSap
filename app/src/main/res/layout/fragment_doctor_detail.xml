@@ -119,8 +119,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Doctor"
-                android:id="@+id/saveDoctorButton"
+                android:text="Review Doctor"
+                android:id="@+id/reviewDoctorButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/accent"
                 android:textColor="@color/icons"
