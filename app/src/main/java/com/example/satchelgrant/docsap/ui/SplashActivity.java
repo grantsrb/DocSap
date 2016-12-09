@@ -26,8 +26,6 @@ import butterknife.ButterKnife;
 public class SplashActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.usernameDisplay) TextView mUserDisplay;
     @Bind(R.id.submitSearch) Button mSubmitSearch;
-    @Bind(R.id.about) Button mAbout;
-    @Bind(R.id.contact) Button mContact;
     @Bind(R.id.nameQuery) EditText mNameQuery;
     @Bind(R.id.specialtyQuery) EditText mSpecialtyQuery;
     @Bind(R.id.welcome) TextView mWelcome;
@@ -60,8 +58,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = getIntent();
         mUserDisplay.setText(intent.getStringExtra("username"));
         mSubmitSearch.setOnClickListener(this);
-        mAbout.setOnClickListener(this);
-        mContact.setOnClickListener(this);
 
     }
 
@@ -83,12 +79,6 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
                 startActivity(newIntent);
             }
 
-        } else if (v == mAbout) {
-            Intent newIntent = new Intent(SplashActivity.this, AboutActivity.class);
-            startActivity(newIntent);
-        } else if(v == mContact) {
-            Intent newIntent = new Intent(SplashActivity.this, ContactActivity.class);
-            startActivity(newIntent);
         }
     }
 
@@ -117,6 +107,14 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         int id = item.getItemId();
         if(id == R.id.action_logout) {
             logout();
+            return true;
+        } else if(id == R.id.action_about) {
+            Intent intent = new Intent(SplashActivity.this, AboutActivity.class);
+            startActivity(intent);
+            return true;
+        } else if(id == R.id.action_contact) {
+            Intent intent = new Intent(SplashActivity.this, ContactActivity.class);
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);

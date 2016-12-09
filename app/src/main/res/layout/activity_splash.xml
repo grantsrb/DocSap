@@ -6,27 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.example.satchelgrant.docsap.ui.SplashActivity">
 
-    <Button
-        android:text="About"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/about"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="30dp"
-        android:layout_alignRight="@+id/usernameDisplay"
-        android:layout_alignEnd="@+id/usernameDisplay" />
-
-    <Button
-        android:text="Contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/about"
-        android:id="@+id/contact"
-        android:layout_toRightOf="@+id/usernameDisplay"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -67,7 +46,7 @@
         android:textSize="40dp"
         android:textColor="@color/primary_text"
         android:layout_marginBottom="15dp"
-        android:layout_below="@id/about"
+        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true" />
 
     <TextView
