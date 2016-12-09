@@ -43,6 +43,7 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
 
     private DatabaseReference mReviewsRef;
     private DatabaseReference mDoctorsRef;
+    private DatabaseReference mUsersRef;
     private SharedPreferences mSharedPrefs;
     private SharedPreferences.Editor mEditor;
 
@@ -59,10 +60,6 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
         super.onCreate(savedInstanceState);
         mDoctor = Parcels.unwrap(getArguments().getParcelable("doctor"));
 
-        mReviewsRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHILD_REVIEWS);
-        mDoctorsRef = mReviewsRef.child(mDoctor.getDoctorId());
-        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
-        mEditor = mSharedPrefs.edit();
     }
 
 
@@ -83,6 +80,13 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
         mPhoneView.setText(mDoctor.getPhoneNumber());
         mAddressView.setText(mDoctor.getAddress());
 
+        mReviewsRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHILD_REVIEWS);
+        mDoctorsRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHILD_DOCTORS);
+        mUsersRef = FirebaseDatabase.getInstance().getReference().child(Constants.CHILD_USERS);
+
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(this.getActivity());
+        mEditor = mSharedPrefs.edit();
+
         mPhoneView.setOnClickListener(this);
         mAddressView.setOnClickListener(this);
         mReviewButton.setOnClickListener(this);
@@ -98,10 +102,16 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + mDoctor.getAddress()));
             startActivity(intent);
         } else if(v==mReviewButton) {
-            String newReviewKey = mReviewsRef.push().getKey();
-            mEditor.putString("reviewPushId", newReviewKey).apply();
+            DatabaseReference doctorRef = mDoctorsRef.child(mDoctor.getDoctorId());
+            doctorRef.setValue(mDoctor);
+            DatabaseReference doctorPushReviewRef = doctorRef.push();
+            String reviewPushId = doctorPushReviewRef.getKey();
+
+
+            mEditor.putString("reviewPushId", reviewPushId).apply();
             mEditor.putString("doctorId", mDoctor.getDoctorId()).apply();
             Intent intent = new Intent(this.getContext(), NewReviewActivity.class);
+
             startActivity(intent);
         }
     }

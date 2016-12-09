@@ -7,5 +7,7 @@ package com.example.satchelgrant.docsap;
 public class Constants {
     public static final String DOCTOR_KEY = BuildConfig.DOCTOR_KEY;
     public static final String REQUEST_URL_BASE = "https://api.betterdoctor.com/2016-03-01/doctors?";
-    public static final String CHILD_REVIEWS = "doctorReviews";
+    public static final String CHILD_REVIEWS = "reviews";
+    public static final String CHILD_DOCTORS = "doctors";
+    public static final String CHILD_USERS = "users";
 }

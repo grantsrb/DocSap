@@ -24,3 +24,5 @@ public class NewReviewActivity extends AppCompatActivity {
         Log.d("Prefs: ", mPrefs.getString("reviewPushId", null));
     }
 }
+
+
