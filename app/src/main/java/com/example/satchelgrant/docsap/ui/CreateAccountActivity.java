@@ -70,7 +70,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
     }
 
     public void createNewUser() {
-//        mAuthProgressDialog.show();
+        mAuthProgressDialog.show();
         mUserName = mNameEditText.getText().toString().trim();
         final String email = mEmailEditText.getText().toString().trim();
         final String password = mPasswordEditText.getText().toString().trim();
