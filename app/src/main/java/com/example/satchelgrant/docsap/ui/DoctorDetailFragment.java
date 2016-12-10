@@ -104,14 +104,9 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
         } else if(v==mReviewButton) {
             DatabaseReference doctorRef = mDoctorsRef.child(mDoctor.getDoctorId());
             doctorRef.setValue(mDoctor);
-            DatabaseReference doctorPushReviewRef = doctorRef.push();
-            String reviewPushId = doctorPushReviewRef.getKey();
-
-
-            mEditor.putString("reviewPushId", reviewPushId).apply();
             mEditor.putString("doctorId", mDoctor.getDoctorId()).apply();
             Intent intent = new Intent(this.getContext(), NewReviewActivity.class);
-
+            intent.putExtra("name", mDoctor.getFullNameWithTitle());
             startActivity(intent);
         }
     }
