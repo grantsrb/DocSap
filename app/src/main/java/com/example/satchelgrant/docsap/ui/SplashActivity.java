@@ -89,9 +89,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
                 Toast.makeText(SplashActivity.this, "At least one field must be filled, no spaces, and no punctuation!", Toast.LENGTH_LONG).show();
             } else {
-                mEditor.putString("ailment", query);
-                mEditor.putString("name", nameQuery);
-                mEditor.putString("specialty", specialtyQuery);
+                mEditor.putString("ailment", query).apply();
+                mEditor.putString("name", nameQuery).apply();
+                mEditor.putString("specialty", specialtyQuery).apply();
                 Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
                 newIntent.putExtra("name", nameQuery);
                 newIntent.putExtra("specialty", specialtyQuery);
@@ -147,4 +147,5 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
         finish();
     }
+
 }
