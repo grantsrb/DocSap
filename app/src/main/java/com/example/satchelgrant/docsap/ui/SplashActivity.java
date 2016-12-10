@@ -1,8 +1,10 @@
 package com.example.satchelgrant.docsap.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -34,6 +36,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private SharedPreferences mPrefs;
+    private SharedPreferences.Editor mEditor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +48,18 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
         mWelcome.setTypeface(droidSans);
         mUserDisplay.setTypeface(droidSans);
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        mEditor = mPrefs.edit();
+        String recentAilment = mPrefs.getString("ailment", "Reason for needing doctor");
+        String recentName = mPrefs.getString("name", "Doctor name");
+        String recentSpecialty = mPrefs.getString("specialty", "Doctor specialty");
+        if(!recentAilment.isEmpty())
+            mQuery.setHint(recentAilment);
+        if(!recentName.isEmpty())
+            mNameQuery.setHint(recentName);
+        if(!recentSpecialty.isEmpty())
+            mSpecialtyQuery.setHint(recentSpecialty);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -72,6 +89,9 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             if(Pattern.matches(".*\\W.*|[a-zA-Z]{0}", nameQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", specialtyQuery) && Pattern.matches(".*\\W.*|[a-zA-Z]{0}", query)) {
                 Toast.makeText(SplashActivity.this, "At least one field must be filled, no spaces, and no punctuation!", Toast.LENGTH_LONG).show();
             } else {
+                mEditor.putString("ailment", query);
+                mEditor.putString("name", nameQuery);
+                mEditor.putString("specialty", specialtyQuery);
                 Intent newIntent = new Intent(SplashActivity.this, ResultsActivity.class);
                 newIntent.putExtra("name", nameQuery);
                 newIntent.putExtra("specialty", specialtyQuery);
@@ -98,7 +118,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_splash, menu);
+        inflater.inflate(R.menu.action_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

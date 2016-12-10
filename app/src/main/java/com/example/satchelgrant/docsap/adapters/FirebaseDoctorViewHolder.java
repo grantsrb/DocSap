@@ -2,7 +2,6 @@ package com.example.satchelgrant.docsap.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,6 +45,6 @@ public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder implements
     }
     @Override
     public void onClick(View v) {
-        Log.d("success", "Hurray");
+
     }
 }
