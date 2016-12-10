@@ -72,7 +72,7 @@ public class NewReviewActivity extends AppCompatActivity implements View.OnClick
 
             pushRef.setValue(newReview);
 
-            Intent newIntent = new Intent(NewReviewActivity.this, ReviewsActivity.class);
+            Intent newIntent = new Intent(NewReviewActivity.this, ReviewedDoctorsActivity.class);
             startActivity(newIntent);
 
         }

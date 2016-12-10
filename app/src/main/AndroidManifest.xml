@@ -42,7 +42,7 @@
         <activity android:name=".ui.DoctorDetailActivity" />
         <activity android:name=".ui.NewReviewActivity" />
         <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.ReviewsActivity"></activity>
+        <activity android:name=".ui.ReviewedDoctorsActivity"></activity>
     </application>
 
 </manifest>
