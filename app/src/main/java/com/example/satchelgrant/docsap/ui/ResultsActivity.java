@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.example.satchelgrant.docsap.DoctorRecListAdapter;
@@ -81,5 +84,22 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_home) {
+            Intent intent = new Intent(ResultsActivity.this, SplashActivity.class);
+            this.startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

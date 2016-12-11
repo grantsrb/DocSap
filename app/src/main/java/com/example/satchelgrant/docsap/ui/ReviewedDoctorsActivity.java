@@ -1,5 +1,6 @@
 package com.example.satchelgrant.docsap.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -83,6 +84,13 @@ public class ReviewedDoctorsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int id = menuItem.getItemId();
+        if(id == R.id.home_search) {
+            Intent intent = new Intent(ReviewedDoctorsActivity.this, SplashActivity.class);
+            this.startActivity(intent);
+        }
         return super.onOptionsItemSelected(menuItem);
     }
+
+
 }

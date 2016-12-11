@@ -1,8 +1,12 @@
 package com.example.satchelgrant.docsap.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.example.satchelgrant.docsap.R;
 import com.example.satchelgrant.docsap.adapters.DoctorPagerAdapter;
@@ -32,5 +36,22 @@ public class DoctorDetailActivity extends AppCompatActivity {
         mPagerAdapter = new DoctorPagerAdapter(getSupportFragmentManager(), mDoctors);
         mViewPager.setAdapter(mPagerAdapter);
         mViewPager.setCurrentItem(startingPosition);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.home_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_home) {
+            Intent intent = new Intent(DoctorDetailActivity.this, SplashActivity.class);
+            this.startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
