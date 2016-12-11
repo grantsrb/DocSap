@@ -69,7 +69,7 @@ public class DoctorRecListAdapter extends RecyclerView.Adapter<DoctorRecListAdap
 
         @Override
         public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
+            int itemPosition = this.getLayoutPosition();
             Intent intent = new Intent(mContext, DoctorDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("doctors", Parcels.wrap(mDoctors));

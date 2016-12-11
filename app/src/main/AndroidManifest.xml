@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SplashActivity"></activity>
+        <activity android:name=".ui.SplashActivity" />
         <activity android:name=".ui.ResultsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -38,7 +38,8 @@
         <activity android:name=".ui.DoctorDetailActivity" />
         <activity android:name=".ui.NewReviewActivity" />
         <activity android:name=".ui.CreateAccountActivity" />
-        <activity android:name=".ui.ReviewedDoctorsActivity"></activity>
+        <activity android:name=".ui.ReviewedDoctorsActivity" />
+        <activity android:name=".ui.ReviewListActivity"></activity>
     </application>
 
 </manifest>
