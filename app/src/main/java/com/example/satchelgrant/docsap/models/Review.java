@@ -11,11 +11,11 @@ public class Review {
     String userId;
     String pushId;
     String review;
-    int rating;
+    float rating;
 
     public Review() {}
 
-    public Review(String uid, String review, int rating) {
+    public Review(String uid, String review, float rating) {
         this.userId = uid;
         this.review = review;
         this.rating = rating;
@@ -29,7 +29,7 @@ public class Review {
         return this.review;
     }
 
-    public int getRating() {
+    public float getRating() {
         return this.rating;
     }
 

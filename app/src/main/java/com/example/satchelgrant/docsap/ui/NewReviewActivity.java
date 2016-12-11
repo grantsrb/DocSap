@@ -62,7 +62,7 @@ public class NewReviewActivity extends AppCompatActivity implements View.OnClick
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
             String review = mReview.getText().toString();
-            int rating = mRatingBar.getNumStars();
+            float rating = mRatingBar.getRating();
             Review newReview = new Review(uid, review, rating);
 
             DatabaseReference docIdRef = mReviewsReference.child(mDocId);
