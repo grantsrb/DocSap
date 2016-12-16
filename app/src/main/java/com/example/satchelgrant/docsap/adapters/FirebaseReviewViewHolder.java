@@ -17,6 +17,7 @@ public class FirebaseReviewViewHolder extends RecyclerView.ViewHolder {
 
     private Context mContext;
     private View mView;
+    public RatingBar mRatingBar;
 
     public FirebaseReviewViewHolder(View itemView) {
         super(itemView);
@@ -26,10 +27,10 @@ public class FirebaseReviewViewHolder extends RecyclerView.ViewHolder {
 
     public void bindReview(Review review) {
         TextView content = (TextView) mView.findViewById(R.id.reviewContentDisplay);
-        RatingBar ratingBar = (RatingBar) mView.findViewById(R.id.reviewRatingBar);
+        mRatingBar = (RatingBar) mView.findViewById(R.id.reviewRatingBar);
 
         content.setText(review.getReview());
-        ratingBar.setRating(review.getRating());
+        mRatingBar.setRating(review.getRating());
 
     }
 

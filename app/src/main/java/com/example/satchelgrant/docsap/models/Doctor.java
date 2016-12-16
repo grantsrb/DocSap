@@ -10,17 +10,17 @@ import java.util.ArrayList;
 
 @Parcel
 public class Doctor {
-    private String firstName;
-    private String lastName;
-    private String doctorId;
-    private String address;
-    private ArrayList<String> specialties;
-    private String title;
-    private String imageUrl;
-    private String bio;
-    private String betterDoctorRating;
-    private String phoneNumber;
-    private String pushId;
+    String firstName;
+    String lastName;
+    String doctorId;
+    String address;
+    ArrayList<String> specialties;
+    String title;
+    String imageUrl;
+    String bio;
+    String betterDoctorRating;
+    String phoneNumber;
+    String pushId;
 
     public Doctor() {}
 

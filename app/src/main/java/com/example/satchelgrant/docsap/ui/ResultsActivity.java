@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.DoctorRecListAdapter;
 import com.example.satchelgrant.docsap.R;
@@ -34,6 +35,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private DoctorRecListAdapter mAdapter;
 
     @Bind(R.id.doctorRecycler) RecyclerView mRecyclerView;
+    @Bind(R.id.submittedSearch) TextView mBanner;
 
 
     @Override
@@ -68,12 +70,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 ResultsActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter = new DoctorRecListAdapter(getApplicationContext(), mDoctors);
-                        mRecyclerView.setAdapter(mAdapter);
-                        RecyclerView.LayoutManager layoutManager=
-                                new LinearLayoutManager(ResultsActivity.this);
-                        mRecyclerView.setLayoutManager(layoutManager);
-                        mRecyclerView.setHasFixedSize(true);
+                        if(mDoctors.size() > 0){
+                            mAdapter = new DoctorRecListAdapter(getApplicationContext(), mDoctors);
+                            mRecyclerView.setAdapter(mAdapter);
+                            RecyclerView.LayoutManager layoutManager=
+                                    new LinearLayoutManager(ResultsActivity.this);
+                            mRecyclerView.setLayoutManager(layoutManager);
+                            mRecyclerView.setHasFixedSize(true);
+                        } else {
+                            mRecyclerView.setVisibility(View.GONE);
+                            mBanner.setText("No doctors exist with that search :(");
+                        }
+
                     }
                 });
             }

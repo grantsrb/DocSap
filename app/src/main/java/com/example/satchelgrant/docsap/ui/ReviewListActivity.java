@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,10 +13,11 @@ import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.Constants;
 import com.example.satchelgrant.docsap.R;
+import com.example.satchelgrant.docsap.adapters.FirebaseReviewListAdapter;
 import com.example.satchelgrant.docsap.adapters.FirebaseReviewViewHolder;
 import com.example.satchelgrant.docsap.models.Doctor;
 import com.example.satchelgrant.docsap.models.Review;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.example.satchelgrant.docsap.util.TouchHelperCallback;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -29,7 +31,8 @@ public class ReviewListActivity extends AppCompatActivity {
     @Bind(R.id.doctorRecycler) RecyclerView mRecyclerView;
 
     private DatabaseReference mDoctorRef;
-    private FirebaseRecyclerAdapter mFirebaseRecyclerAdapter;
+    private FirebaseReviewListAdapter mAdapter;
+    private ItemTouchHelper mItemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,15 +52,16 @@ public class ReviewListActivity extends AppCompatActivity {
     }
 
     public void setUpFirebaseAdapter() {
-        mFirebaseRecyclerAdapter = new FirebaseRecyclerAdapter<Review, FirebaseReviewViewHolder>(Review.class, R.layout.review_list_item, FirebaseReviewViewHolder.class, mDoctorRef) {
-            @Override
-            protected void populateViewHolder(FirebaseReviewViewHolder viewHolder, Review model, int position) {
-                viewHolder.bindReview(model);
-            }
-        };
+        mAdapter = new FirebaseReviewListAdapter(Review.class, R.layout.review_list_item,
+                FirebaseReviewViewHolder.class, mDoctorRef, this);
+
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.setAdapter(mFirebaseRecyclerAdapter);
+        mRecyclerView.setAdapter(mAdapter);
+
+        ItemTouchHelper.Callback callback = new TouchHelperCallback(mAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(mRecyclerView);
     }
 
     @Override
@@ -75,5 +79,11 @@ public class ReviewListActivity extends AppCompatActivity {
             this.startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mAdapter.cleanup();
     }
 }

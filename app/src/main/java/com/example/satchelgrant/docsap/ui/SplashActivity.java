@@ -136,6 +136,10 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
             Intent intent = new Intent(SplashActivity.this, ContactActivity.class);
             startActivity(intent);
             return true;
+        } else if(id == R.id.action_reviews) {
+            Intent intent = new Intent(SplashActivity.this, ReviewedDoctorsActivity.class);
+            startActivity(intent);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

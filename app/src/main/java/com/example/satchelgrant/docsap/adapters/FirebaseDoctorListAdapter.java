@@ -45,12 +45,12 @@ public class FirebaseDoctorListAdapter extends FirebaseRecyclerAdapter<Doctor, F
 
     @Override
     public boolean onItemMove(int fromPosition, int toPosition) {
-        notifyItemMoved(fromPosition, toPosition); // Could make permanent changes here but it would make no sense
+        notifyItemMoved(fromPosition, toPosition);
         return false;
     }
 
     @Override
     public void onItemDismiss(int position) {
-//        getRef(position).removeValue();  // Could remove a value here, but it makes no sense to
+
     }
 }

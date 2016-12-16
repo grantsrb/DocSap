@@ -36,11 +36,10 @@ public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder implements
 
     public void bindDoctor(Doctor doctor) {
         mDoctor = doctor;
-        ImageView mImageView = (ImageView) mView.findViewById(R.id.doctorImageHolder);
+        mImageView = (ImageView) mView.findViewById(R.id.doctorImageHolder);
         TextView doctorNameView = (TextView) mView.findViewById(R.id.doctorNameHolder);
         TextView doctorSpecialtyView = (TextView) mView.findViewById(R.id.speciatiesTextView);
         TextView doctorRatingView = (TextView) mView.findViewById(R.id.ratingTextView);
-
         doctorNameView.setText(doctor.getFullNameWithTitle());
         doctorSpecialtyView.setText(android.text.TextUtils.join(", ", doctor.getSpecialties()));
         doctorRatingView.setText(doctor.getBetterDoctorRating());
