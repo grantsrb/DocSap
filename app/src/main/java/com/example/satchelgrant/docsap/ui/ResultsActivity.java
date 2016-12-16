@@ -1,6 +1,7 @@
 package com.example.satchelgrant.docsap.ui;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -31,11 +32,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     private String mName;
     private String mQuery;
     private String mSpecialty;
+    private int mOrientation;
     private ArrayList<Doctor> mDoctors;
     private DoctorRecListAdapter mAdapter;
+    private TextView mBanner;
 
     @Bind(R.id.doctorRecycler) RecyclerView mRecyclerView;
-    @Bind(R.id.submittedSearch) TextView mBanner;
 
 
     @Override
@@ -43,9 +45,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         ButterKnife.bind(this);
-
         Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
-
+        mOrientation = this.getResources().getConfiguration().orientation;
+        mBanner = (TextView) this.findViewById(R.id.submittedSearch);
+        if(mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+            mBanner.setVisibility(View.GONE);
+        }
         Intent intent = getIntent();
         mQuery = intent.getStringExtra("query");
         mName = intent.getStringExtra("name");
@@ -79,6 +84,9 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                             mRecyclerView.setHasFixedSize(true);
                         } else {
                             mRecyclerView.setVisibility(View.GONE);
+                            if(mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                                mBanner.setVisibility(View.VISIBLE);
+                            }
                             mBanner.setText("No doctors exist with that search :(");
                         }
 

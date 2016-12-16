@@ -70,31 +70,35 @@ public class DoctorService {
                 for(int i = 0; i < doctorsResults.length(); i++) {
                     JSONObject doctor = doctorsResults.getJSONObject(i);
                     uid = doctor.getString("uid");
-                    JSONArray practices = doctor.getJSONArray("practices");
-                    for(int j = 0; j < practices.length(); j++) {
-                        JSONObject addressJson = practices.getJSONObject(j).getJSONObject("visit_address");
-                        if(addressJson.getString("city").equals("Portland")) {
-                            address = addressJson.getString("street");
-                            if(!addressJson.isNull("street2")) {
-                                String street2 = addressJson.getString("street2");
-                                address = address + ", " + street2;
-                            }
-                            address = address + "\n" + addressJson.getString("city") + ", " +
-                                    addressJson.getString("state") + " " + addressJson.getString("zip");
-                            JSONArray phones = practices.getJSONObject(j).getJSONArray("phones");
-                            for(int k = 0; k < phones.length(); k++) {
-                                if(phones.getJSONObject(k).getString("type").equals("landline")) {
-                                    phoneNum = phones.getJSONObject(k).getString("number");
-                                    break;
+                    if(doctor.has("practices")) {
+                        JSONArray practices = doctor.getJSONArray("practices");
+                        for (int j = 0; j < practices.length(); j++) {
+                            JSONObject addressJson = practices.getJSONObject(j).getJSONObject("visit_address");
+                            if (addressJson.getString("city").equals("Portland")) {
+                                address = addressJson.getString("street");
+                                if (!addressJson.isNull("street2")) {
+                                    String street2 = addressJson.getString("street2");
+                                    address = address + ", " + street2;
                                 }
+                                address = address + "\n" + addressJson.getString("city") + ", " +
+                                        addressJson.getString("state") + " " + addressJson.getString("zip");
+                                JSONArray phones = practices.getJSONObject(j).getJSONArray("phones");
+                                for (int k = 0; k < phones.length(); k++) {
+                                    if (phones.getJSONObject(k).getString("type").equals("landline")) {
+                                        phoneNum = phones.getJSONObject(k).getString("number");
+                                        break;
+                                    }
+                                }
+                                break;
                             }
-                            break;
                         }
                     }
                     JSONObject profile = doctor.getJSONObject("profile");
                     String firstName = profile.getString("first_name");
                     String lastName = profile.getString("last_name");
-                    String title = profile.getString("title");
+                    String title = "";
+                    if(profile.has("title"))
+                        title = profile.getString("title");
                     String imageUrl = profile.getString("image_url");
                     String bio = profile.getString("bio");
                     ArrayList<String> specialties = new ArrayList<>();

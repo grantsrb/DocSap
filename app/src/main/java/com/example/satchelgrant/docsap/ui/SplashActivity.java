@@ -39,11 +39,15 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
     private SharedPreferences mPrefs;
     private SharedPreferences.Editor mEditor;
 
+    private int mOrientation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+
+
 
         Typeface droidSans = Typeface.createFromAsset(getAssets(), "fonts/DroidSans.ttf");
         mWelcome.setTypeface(droidSans);
