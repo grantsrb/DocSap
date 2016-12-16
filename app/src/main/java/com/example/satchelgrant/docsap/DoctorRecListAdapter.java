@@ -2,6 +2,9 @@ package com.example.satchelgrant.docsap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.models.Doctor;
 import com.example.satchelgrant.docsap.ui.DoctorDetailActivity;
+import com.example.satchelgrant.docsap.ui.DoctorDetailFragment;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -59,21 +63,30 @@ public class DoctorRecListAdapter extends RecyclerView.Adapter<DoctorRecListAdap
         @Bind(R.id.ratingTextView) TextView mDoctorRatingView;
 
         private Context mContext;
+        private int mOrientation;
 
         public DoctorViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(0);
+            }
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             int itemPosition = this.getLayoutPosition();
-            Intent intent = new Intent(mContext, DoctorDetailActivity.class);
-            intent.putExtra("position", itemPosition);
-            intent.putExtra("doctors", Parcels.wrap(mDoctors));
-            mContext.startActivity(intent);
+            if (mOrientation == Configuration.ORIENTATION_LANDSCAPE) {
+                createDetailFragment(itemPosition);
+            } else {
+                Intent intent = new Intent(mContext, DoctorDetailActivity.class);
+                intent.putExtra(Constants.EXTRA_KEY_POSITION, itemPosition);
+                intent.putExtra(Constants.EXTRA_KEY_DOCTORS, Parcels.wrap(mDoctors));
+                mContext.startActivity(intent);
+            }
         }
 
         public void bindDoctors(Doctor doctor) {
@@ -85,6 +98,13 @@ public class DoctorRecListAdapter extends RecyclerView.Adapter<DoctorRecListAdap
                     .resize(MAX_WIDTH, MAX_HEIGHT)
                     .centerCrop()
                     .into(mDoctorImageView);
+        }
+
+        public void createDetailFragment(int position) {
+            DoctorDetailFragment detailFragment = DoctorDetailFragment.newInstance(mDoctors, position);
+            FragmentTransaction ft = ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.detailContainer, detailFragment);
+            ft.commit();
         }
 
     }

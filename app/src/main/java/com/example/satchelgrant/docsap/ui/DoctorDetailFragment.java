@@ -22,6 +22,8 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.util.ArrayList;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -40,6 +42,8 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     private static final int MAX_HEIGHT = 200;
 
     private Doctor mDoctor;
+    private ArrayList<Doctor> mDoctors;
+    private int mPosition;
 
     private DatabaseReference mReviewsRef;
     private DatabaseReference mDoctorsRef;
@@ -47,10 +51,11 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     private SharedPreferences mSharedPrefs;
     private SharedPreferences.Editor mEditor;
 
-    public static DoctorDetailFragment newInstance(Doctor doctor) {
+    public static DoctorDetailFragment newInstance(ArrayList<Doctor> doctors, int position) {
         DoctorDetailFragment doctorDetailFragment = new DoctorDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("doctor", Parcels.wrap(doctor));
+        args.putParcelable(Constants.EXTRA_KEY_DOCTORS, Parcels.wrap(doctors));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
         doctorDetailFragment.setArguments(args);
         return doctorDetailFragment;
     }
@@ -58,8 +63,9 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDoctor = Parcels.unwrap(getArguments().getParcelable("doctor"));
-
+        int mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        ArrayList<Doctor> mDoctors = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_DOCTORS));
+        mDoctor = mDoctors.get(mPosition);
     }
 
 

@@ -10,4 +10,6 @@ public class Constants {
     public static final String CHILD_REVIEWS = "reviews";
     public static final String CHILD_DOCTORS = "doctors";
     public static final String CHILD_USERS = "users";
+    public static final String EXTRA_KEY_POSITION = "position";
+    public static final String EXTRA_KEY_DOCTORS = "doctors";
 }

@@ -24,7 +24,7 @@ public class DoctorPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return DoctorDetailFragment.newInstance(mDoctors.get(position));
+        return DoctorDetailFragment.newInstance(mDoctors,position);
     }
 
     @Override
