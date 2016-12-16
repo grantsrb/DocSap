@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,18 +15,21 @@ import android.view.MenuItem;
 
 import com.example.satchelgrant.docsap.Constants;
 import com.example.satchelgrant.docsap.R;
+import com.example.satchelgrant.docsap.adapters.FirebaseDoctorListAdapter;
 import com.example.satchelgrant.docsap.adapters.FirebaseDoctorViewHolder;
 import com.example.satchelgrant.docsap.models.Doctor;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.example.satchelgrant.docsap.util.OnStartDragListener;
+import com.example.satchelgrant.docsap.util.TouchHelperCallback;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class ReviewedDoctorsActivity extends AppCompatActivity {
+public class ReviewedDoctorsActivity extends AppCompatActivity implements OnStartDragListener {
     private DatabaseReference mDoctorsRef;
-    private FirebaseRecyclerAdapter mFirebaseAdapter;
+    private FirebaseDoctorListAdapter mFirebaseAdapter;
+    private ItemTouchHelper mItemTouchHelper;
     @Bind(R.id.doctorRecycler) RecyclerView doctorRecyclerView;
 
     @Override
@@ -40,15 +44,16 @@ public class ReviewedDoctorsActivity extends AppCompatActivity {
     }
 
     public void setUpFirebaseAdapter() {
-        mFirebaseAdapter = new FirebaseRecyclerAdapter<Doctor, FirebaseDoctorViewHolder>(Doctor.class, R.layout.doctors_list_item,FirebaseDoctorViewHolder.class,mDoctorsRef) {
-            @Override
-            protected void populateViewHolder(FirebaseDoctorViewHolder viewHolder, Doctor model, int position) {
-                viewHolder.bindDoctor(model);
-            }
-        };
+        mFirebaseAdapter = new FirebaseDoctorListAdapter(Doctor.class, R.layout.doctor_list_item_drag,
+                FirebaseDoctorViewHolder.class, mDoctorsRef, this, this);
+
         doctorRecyclerView.setHasFixedSize(true);
         doctorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         doctorRecyclerView.setAdapter(mFirebaseAdapter);
+
+        ItemTouchHelper.Callback callback = new TouchHelperCallback(mFirebaseAdapter);
+        mItemTouchHelper = new ItemTouchHelper(callback);
+        mItemTouchHelper.attachToRecyclerView(doctorRecyclerView);
     }
 
     @Override
@@ -92,5 +97,8 @@ public class ReviewedDoctorsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(menuItem);
     }
 
-
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        mItemTouchHelper.startDrag(viewHolder);
+    }
 }
