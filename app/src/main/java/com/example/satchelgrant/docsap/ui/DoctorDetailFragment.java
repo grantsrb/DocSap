@@ -37,6 +37,7 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     @Bind(R.id.phoneTextView) TextView mPhoneView;
     @Bind(R.id.addressTextView) TextView mAddressView;
     @Bind(R.id.reviewDoctorButton) Button mReviewButton;
+    @Bind(R.id.toReviewsButton) Button mToReviewsButton;
 
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
@@ -63,8 +64,8 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        int mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
-        ArrayList<Doctor> mDoctors = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_DOCTORS));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mDoctors = Parcels.unwrap(getArguments().getParcelable(Constants.EXTRA_KEY_DOCTORS));
         mDoctor = mDoctors.get(mPosition);
     }
 
@@ -96,6 +97,7 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
         mPhoneView.setOnClickListener(this);
         mAddressView.setOnClickListener(this);
         mReviewButton.setOnClickListener(this);
+        mToReviewsButton.setOnClickListener(this);
         return view;
     }
 
@@ -113,6 +115,10 @@ public class DoctorDetailFragment extends Fragment implements View.OnClickListen
             mEditor.putString("doctorId", mDoctor.getDoctorId()).apply();
             Intent intent = new Intent(this.getContext(), NewReviewActivity.class);
             intent.putExtra("name", mDoctor.getFullNameWithTitle());
+            startActivity(intent);
+        } else if(v == mToReviewsButton) {
+            Intent intent = new Intent(this.getContext(), ReviewListActivity.class);
+            intent.putExtra("doctor", Parcels.wrap(mDoctor));
             startActivity(intent);
         }
     }

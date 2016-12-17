@@ -116,15 +116,37 @@
 
             </LinearLayout>
         </RelativeLayout>
-        <Button
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Review Doctor"
-            android:id="@+id/reviewDoctorButton"
             android:layout_alignParentBottom="true"
-            android:background="@color/accent"
-            android:textColor="@color/icons"
-            android:textSize="15sp" />
+            android:layout_alignParentLeft="true"
+            android:id="@+id/buttonLayout">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Review Doctor"
+                android:id="@+id/reviewDoctorButton"
+                android:background="@color/accent"
+                android:textColor="@color/icons"
+                android:textSize="15sp"
+                android:textAlignment="center"
+                />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="See Reviews"
+                android:id="@+id/toReviewsButton"
+                android:background="@color/accent"
+                android:textColor="@color/icons"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
     </LinearLayout>
     </ScrollView>
 

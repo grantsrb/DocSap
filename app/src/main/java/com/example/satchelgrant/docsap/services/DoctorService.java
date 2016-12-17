@@ -93,6 +93,7 @@ public class DoctorService {
                             }
                         }
                     }
+
                     JSONObject profile = doctor.getJSONObject("profile");
                     String firstName = profile.getString("first_name");
                     String lastName = profile.getString("last_name");
@@ -102,7 +103,9 @@ public class DoctorService {
                     String imageUrl = profile.getString("image_url");
                     String bio = profile.getString("bio");
                     ArrayList<String> specialties = new ArrayList<>();
-                    JSONArray specialtiesResults = doctor.getJSONArray("specialties");
+                    JSONArray specialtiesResults = new JSONArray();
+                    if(doctor.has("specialties"))
+                        specialtiesResults = doctor.getJSONArray("specialties");
                     for(int j = 0; j < specialtiesResults.length(); j++) {
                         specialties.add(specialtiesResults.getJSONObject(j).getString("name"));
                     }
