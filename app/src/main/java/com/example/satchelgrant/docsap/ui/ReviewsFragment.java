@@ -1,16 +1,12 @@
 package com.example.satchelgrant.docsap.ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -30,41 +26,42 @@ import org.parceler.Parcels;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class ReviewsFragment extends Fragment {
-    @Bind(R.id.submittedSearch)
-    TextView mBanner;
-    @Bind(R.id.doctorRecycler)
-    RecyclerView mRecyclerView;
+    @Bind(R.id.reviewBanner) TextView mBanner;
+    @Bind(R.id.reviewRecycler) RecyclerView mRecyclerView;
 
     private DatabaseReference mDoctorRef;
     private FirebaseReviewListAdapter mAdapter;
     private ItemTouchHelper mItemTouchHelper;
+    private Doctor mDoctor;
 
     public ReviewsFragment() {
         // Required empty public constructor
     }
 
-    public ReviewsFragment newInstance()
+    public static ReviewsFragment newInstance(Doctor doctor) {
+        ReviewsFragment newFragment = new ReviewsFragment();
+        Bundle args = new Bundle();
+        args.putParcelable(Constants.DOCTOR_KEY, Parcels.wrap(doctor));
+        newFragment.setArguments(args);
+        return newFragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mDoctor = Parcels.unwrap(getArguments().getParcelable(Constants.DOCTOR_KEY));
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_reviews, container, false);
-
         ButterKnife.bind(this, view);
 
-        Intent incomingIntent = getActivity().getIntent();
-        Doctor doctor = Parcels.unwrap(incomingIntent.getParcelableExtra("doctor"));
-        String docId = doctor.getDoctorId();
-
-        mDoctorRef = FirebaseDatabase.getInstance().getReference(Constants.CHILD_REVIEWS).child(docId);
-
-        mBanner.setText(doctor.getFullNameWithTitle() + " Reviews");
+        mDoctorRef = FirebaseDatabase.getInstance().getReference(Constants.CHILD_REVIEWS).child(mDoctor.getDoctorId());
+        mBanner.setText(mDoctor.getFullNameWithTitle() + " Reviews");
 
         this.setUpFirebaseAdapter();
         return view;
@@ -81,23 +78,6 @@ public class ReviewsFragment extends Fragment {
         ItemTouchHelper.Callback callback = new TouchHelperCallback(mAdapter);
         mItemTouchHelper = new ItemTouchHelper(callback);
         mItemTouchHelper.attachToRecyclerView(mRecyclerView);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.home_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.action_home) {
-            Intent intent = new Intent(getActivity(), SplashActivity.class);
-            this.startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
