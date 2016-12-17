@@ -37,6 +37,46 @@ public class Doctor {
         this.phoneNumber = phoneNum;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setSpecialties(ArrayList<String> specialties) {
+        this.specialties = specialties;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setBetterDoctorRating(String betterDoctorRating) {
+        this.betterDoctorRating = betterDoctorRating;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -72,7 +112,6 @@ public class Doctor {
     public String getBio() {
         return bio;
     }
-
 
     public String getBetterDoctorRating() {
         return betterDoctorRating;

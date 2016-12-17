@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.Constants;
 import com.example.satchelgrant.docsap.R;
@@ -31,13 +33,14 @@ public class ReviewedDoctorsActivity extends AppCompatActivity implements OnStar
     private FirebaseDoctorListAdapter mFirebaseAdapter;
     private ItemTouchHelper mItemTouchHelper;
     @Bind(R.id.doctorRecycler) RecyclerView doctorRecyclerView;
+    @Bind(R.id.submittedSearch) TextView mBanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         ButterKnife.bind(this);
-
+        mBanner.setVisibility(View.GONE);
         mDoctorsRef = FirebaseDatabase.getInstance().getReference(Constants.CHILD_DOCTORS);
         this.setUpFirebaseAdapter();
 
