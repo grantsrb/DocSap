@@ -8,13 +8,14 @@ import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.R;
 import com.example.satchelgrant.docsap.models.Doctor;
+import com.example.satchelgrant.docsap.util.ItemTouchHelperViewHolder;
 import com.squareup.picasso.Picasso;
 
 /**
  * Created by satchelgrant on 12/9/16.
  */
 
-public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder {
+public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder  implements ItemTouchHelperViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
@@ -43,5 +44,22 @@ public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder {
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
                 .into(mImageView);
+    }
+
+    @Override
+    public void onItemSelected() {
+        itemView.animate()
+                .alpha(0.7f)
+                .scaleX(0.9f)
+                .scaleY(0.9f)
+                .setDuration(500);
+    }
+
+    @Override
+    public void onItemClear() {
+        itemView.animate()
+                .alpha(1f)
+                .scaleX(1f)
+                .scaleY(1f);
     }
 }
