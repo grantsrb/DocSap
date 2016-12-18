@@ -1,7 +1,6 @@
 package com.example.satchelgrant.docsap.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,16 +8,13 @@ import android.widget.TextView;
 
 import com.example.satchelgrant.docsap.R;
 import com.example.satchelgrant.docsap.models.Doctor;
-import com.example.satchelgrant.docsap.ui.ReviewListActivity;
 import com.squareup.picasso.Picasso;
-
-import org.parceler.Parcels;
 
 /**
  * Created by satchelgrant on 12/9/16.
  */
 
-public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder {
     private static final int MAX_WIDTH = 200;
     private static final int MAX_HEIGHT = 200;
 
@@ -31,7 +27,6 @@ public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder implements
         super(itemView);
         mView = itemView;
         mContext = itemView.getContext();
-        mView.setOnClickListener(this);
     }
 
     public void bindDoctor(Doctor doctor) {
@@ -48,13 +43,5 @@ public class FirebaseDoctorViewHolder extends RecyclerView.ViewHolder implements
                 .resize(MAX_WIDTH, MAX_HEIGHT)
                 .centerCrop()
                 .into(mImageView);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(mContext, ReviewListActivity.class);
-        intent.putExtra("doctorId", mDoctor.getDoctorId());
-        intent.putExtra("doctor", Parcels.wrap(mDoctor));
-        mContext.startActivity(intent);
     }
 }

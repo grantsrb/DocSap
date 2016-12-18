@@ -43,7 +43,6 @@ public class ReviewedDoctorsActivity extends AppCompatActivity implements OnStar
         mBanner.setVisibility(View.GONE);
         mDoctorsRef = FirebaseDatabase.getInstance().getReference(Constants.CHILD_DOCTORS);
         this.setUpFirebaseAdapter();
-
     }
 
     public void setUpFirebaseAdapter() {
