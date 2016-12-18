@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_new_review"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.satchelgrant.docsap.ui.NewReviewActivity">
 
-</LinearLayout>
+    <TextView
+        android:text="Review Doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:id="@+id/reviewDoctorBanner"
+        android:textSize="25dp" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/reviewDoctorBanner"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:id="@+id/doctorRatingBar" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/doctorReviewText"
+        android:textSize="18sp"
+        android:hint="Type review here..."
+        android:layout_below="@id/doctorRatingBar"
+        android:gravity="center"
+        android:textAlignment="center" />
+
+
+    <Button
+        android:text="Submit Review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:id="@+id/submitReviewButton"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
