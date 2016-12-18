@@ -28,11 +28,12 @@ public class FirebaseReviewViewHolder extends RecyclerView.ViewHolder implements
 
     public void bindReview(Review review) {
         TextView content = (TextView) mView.findViewById(R.id.reviewContentDisplay);
+        final TextView userNameTextView = (TextView) mView.findViewById(R.id.userName);
         mRatingBar = (RatingBar) mView.findViewById(R.id.reviewRatingBar);
 
+        userNameTextView.setText(review.getUserName());
         content.setText(review.getReview());
         mRatingBar.setRating(review.getRating());
-
     }
 
     @Override

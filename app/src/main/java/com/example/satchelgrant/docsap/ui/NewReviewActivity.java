@@ -64,9 +64,14 @@ public class NewReviewActivity extends AppCompatActivity implements View.OnClick
         if(v == mSubmitReviewButton) {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
+            String userName = user.getDisplayName();
             String review = mReview.getText().toString();
+            review.trim();
             float rating = mRatingBar.getRating();
-            Review newReview = new Review(uid, review, rating);
+            if(review.isEmpty()) {
+                review = "No review provided";
+            }
+            Review newReview = new Review(uid, userName, review, rating);
 
             DatabaseReference docIdRef = mReviewsReference.child(mDocId);
             DatabaseReference pushRef = docIdRef.push();

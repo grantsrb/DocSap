@@ -9,16 +9,26 @@ import org.parceler.Parcel;
 @Parcel
 public class Review {
     String userId;
+    String userName;
     String pushId;
     String review;
     float rating;
 
     public Review() {}
 
-    public Review(String uid, String review, float rating) {
+    public Review(String uid, String userName, String review, float rating) {
         this.userId = uid;
         this.review = review;
         this.rating = rating;
+        this.userName = userName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserId() {
