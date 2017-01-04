@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DocSap.iml" filepath="$PROJECT_DIR$/DocSap.iml" />
       <module fileurl="file://$PROJECT_DIR$/DocSapp.iml" filepath="$PROJECT_DIR$/DocSapp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
