@@ -4,7 +4,16 @@
 
 ## Description
 
-This app links users to portland doctors by doctor specialty, doctor name, and/or user ailment. This is a prototype and is still in progress.
+This app links users to portland doctors by doctor specialty, doctor name, and/or user ailment.
+
+![Login](./readmeimgs/loginview.png "Login")
+![Welcome](./readmeimgs/welcomeview.png "Welcome")
+![Search Results](./readmeimgs/doclistview.png "Search Results")
+![Doctor View](./readmeimgs/protraitdocview.png "Doctor View")
+![Doctor View2](./readmeimgs/landscapedocview.png "Doctor View")
+![Doctor Review](./readmeimgs/reviewview.png "Doctor Review")
+![Doctor Reviews](./readmeimgs/reviewsview.png "Doctor Reviews")
+
 
 ## Installation
 
